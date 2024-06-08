@@ -1,0 +1,63 @@
+{
+  "name": "streamlabs-socket-client",
+  "version": "0.0.4",
+  "description": "A Browser/Node.js JavaScript library for interfacing with streamlabs sockets.",
+  "main": "index.js",
+  "scripts": {
+    "lint": "node ./node_modules/eslint/bin/eslint.js ./src ./examples ./webpack.config.js --ext js",
+    "lint:fix": "npm run lint -- --fix",
+    "clean": "rimraf ./dist && mkdirp ./dist/browser ./dist/node",
+    "build:node": "babel ./src --out-dir ./dist/node -s",
+    "build:browser": "webpack",
+    "prepare": "npm run lint && npm run clean && npm-run-all --parallel build:*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tehkhop/streamlabs-socket-client.git"
+  },
+  "keywords": [
+    "websockets",
+    "streamlabs",
+    "twitch",
+    "mixer",
+    "youtubegaming",
+    "alerts"
+  ],
+  "author": "Lachlan Davidson <lachlan@lachlandavidson.com> @tehkhop",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.0.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-stage-3": "^6.24.1",
+    "babelrc-rollup": "^3.0.0",
+    "cross-env": "^5.0.5",
+    "eslint": "^4.7.0",
+    "eslint-config-airbnb-base": "^12.0.0",
+    "eslint-plugin-import": "^2.7.0",
+    "husky": "^0.14.3",
+    "npm-run-all": "^4.1.1",
+    "precommit-hook": "^3.0.0",
+    "rimraf": "^2.6.2",
+    "rollup": "^0.50.0",
+    "rollup-plugin-babel": "^3.0.2",
+    "rollup-plugin-commonjs": "^8.2.1",
+    "rollup-plugin-node-builtins": "^2.1.2",
+    "rollup-plugin-node-globals": "^1.1.0",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-plugin-uglify": "^2.0.1",
+    "unminified-webpack-plugin": "^1.2.0",
+    "webpack": "^3.6.0"
+  },
+  "dependencies": {
+    "bufferutil": "^3.0.2",
+    "eventemitter3": "^2.0.3",
+    "socket.io-client": "^2.0.3",
+    "source-map-support": "^0.4.18"
+  }
+}
