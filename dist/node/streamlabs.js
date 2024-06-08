@@ -93,10 +93,10 @@ var StreamlabsClient = function (_EventEmitter) {
 
       this.client = (0, _socket2.default)(baseURL + token, {
         autoConnect: false,
-        // transports: ['websocket'],
+        transports: ['websocket'],
         forceNode: true,
-        forceJSONP: false
-        // debug: true,
+        forceJSONP: false,
+        debug: true,
       });
 
       this.hookEventListeners();
@@ -126,7 +126,8 @@ var StreamlabsClient = function (_EventEmitter) {
       // eslint-disable-next-line no-underscore-dangle
 
       if (this.idTable.has(message._id)) {
-        return;
+        console.log("id exists??");
+        //return;
       }
 
       // eslint-disable-next-line no-underscore-dangle
@@ -154,7 +155,7 @@ var StreamlabsClient = function (_EventEmitter) {
 
             if (isResub) {
               this.emit('resubscription', _extends({}, message, {
-                months: Number((0, _helpers.removeCommas)(message.months)) || 0,
+                months: Number(message.months) || 0,
                 formattedMonths: message.months,
                 isTest: isTest
               }));
@@ -170,7 +171,7 @@ var StreamlabsClient = function (_EventEmitter) {
         case 'donation':
           {
             this.emit('donation', _extends({}, message, {
-              amount: Number((0, _helpers.removeNonNumeric)(message.amount)),
+              amount: Number((0, _helpers.removeNonNumeric)(String(message.amount))),
               formattedAmount: (message.formattedAmount || message.formatted_amount || '').toString(),
               currency: message.currency || 'USD',
               isTest: isTest
@@ -193,7 +194,7 @@ var StreamlabsClient = function (_EventEmitter) {
         case 'bits':
           {
             this.emit('bits', _extends({}, message, {
-              amount: Number((0, _helpers.removeCommas)(message.amount)) || 0,
+              amount: Number((message.amount)) || 0,
               formattedAmount: message.amount.toString(),
               isTest: !!message.isTest
             }));
